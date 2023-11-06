@@ -3,20 +3,6 @@ import { data } from "./data/searchableCourses.json";
 import { removeStopwords } from "stopword";
 import { PorterStemmer } from "natural";
 import { SearchableCourseData } from "./types";
-
-async function fetchThesaurus(word: string) {
-    return await fetch(`https://api.api-ninjas.com/v1/thesaurus?word=${word}`, {
-        headers: {
-            "X-Api-Key": "B6s1iTUkvwhaW9AjoIA6pg==s0v74raMkWvaEQ6U",
-        },
-    })
-        .then((response) => response.json())
-        .then((body: { synonyms: string[] }) => body.synonyms)
-        .catch((error) => {
-            console.error(error);
-        });
-}
-
 const resolvedData: SearchableCourseData[] = data;
 
 let miniSearch: MiniSearch<SearchableCourseData> = new MiniSearch({
