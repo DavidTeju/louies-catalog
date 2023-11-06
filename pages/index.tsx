@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {Analytics} from '@vercel/analytics/react';
 import {SearchResult} from "minisearch";
 import Image from 'next/image'
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -88,7 +89,7 @@ export default function SearchApp() {
                     rel="stylesheet"/>
                 <Container style={{backgroundColor: "#C41E3A", padding: "5%", borderRadius: "10px"}}>
                     <div style={{display: "flex", justifyContent: "center"}}><h1
-                        style={{textAlign: "center", fontSize: "clamp(2em, 4vw)", paddingRight: "6px"}}>Louie's
+                        style={{textAlign: "center", paddingRight: "6px"}}>Louie&apos;s
                         Catalog</h1>
                         <Image
                             style={{width: "clamp(2em, 4vw, 4em)", height: "clamp(2em, 4vw, 4em)"}}
@@ -111,6 +112,7 @@ export default function SearchApp() {
                         );
                     })}
                 </Container>
+                <Analytics/>
             </div>
         </>
     );
