@@ -31,7 +31,7 @@ function CourseSearchResult({
     );
 }
 
-const domain = "https://louies-catalog-production.up.railway.app";
+const domain = "https://louie-backend.davidteju.dev";
 
 function Search() {
     const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
