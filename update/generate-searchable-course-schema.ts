@@ -1,6 +1,6 @@
-import {removeStopwords} from "stopword";
-import {PorterStemmer} from "natural";
-import {CourseData, SearchableCourseData, StoredCourseData} from "../types";
+import { removeStopwords } from "stopword";
+import { PorterStemmer } from "natural";
+import { CourseData, SearchableCourseData, StoredCourseData } from "../types";
 
 function flattenCourses(data: StoredCourseData["data"][0][]) {
     return data
@@ -14,29 +14,33 @@ function flattenCourses(data: StoredCourseData["data"][0][]) {
         }));
 }
 
-export default function generateSearchableCourseSchema(data: StoredCourseData['data'][0][]): SearchableCourseData[] {
+export default function generateSearchableCourseSchema(
+    data: StoredCourseData["data"][0][]
+): SearchableCourseData[] {
     // Flatten the course data and extract relevant information
     const flattenedCourses = flattenCourses(data);
 
     // Remove duplicate courses based on course code
     const uniqueCourses = flattenedCourses.filter(
         (entry, index, self) =>
-            index === self.findIndex((course) => course.courseCode === entry.courseCode)
+            index ===
+            self.findIndex((course) => course.courseCode === entry.courseCode)
     );
 
     return uniqueCourses.map((course) => {
         // Process and prepare the searchable course data
-        const descriptionAsArray = course.description.split(' ')
+        const descriptionAsArray = course.description
+            .split(" ")
             .map((word) => PorterStemmer.stem(word))
             .filter((word) => word.length > 0);
 
-        const strippedCourseName = removeStopwords(course.courseName.split(' '))
+        const strippedCourseName = removeStopwords(course.courseName.split(" "))
             .map(PorterStemmer.stem)
-            .join(' ');
+            .join(" ");
 
         const strippedDescription = descriptionAsArray
-            ? removeStopwords(descriptionAsArray).join(' ')
-            : '';
+            ? removeStopwords(descriptionAsArray).join(" ")
+            : "";
 
         return {
             courseCode: course.courseCode,

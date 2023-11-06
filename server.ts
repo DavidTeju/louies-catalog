@@ -2,7 +2,6 @@ import express from "express";
 import search from "./search-courses";
 import update from "./update/update";
 
-
 const app = express();
 const port = process.env.PORT;
 
@@ -13,16 +12,16 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/search', (req, res) => {
+app.get("/search", (req, res) => {
     // Implement your API logic here
     const prompt = req.query.prompt as string;
 
     res.send(search(prompt)!.slice(0, 10));
 });
-app.get('/update', (req, res) => {
+app.get("/update", (req, res) => {
     update();
     res.send("Updating");
-})
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

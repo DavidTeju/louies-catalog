@@ -1,25 +1,25 @@
 export type SearchableCourseData = {
-    courseCode: string,
-    courseName: string,
-    strippedCourseName: string,
-    credits: number,
-    prerequisites: string,
-    description: string,
-    strippedDescription: string,
-}
+    courseCode: string;
+    courseName: string;
+    strippedCourseName: string;
+    credits: number;
+    prerequisites: string;
+    description: string;
+    strippedDescription: string;
+};
 
 export type StoredCourseData = {
     data: {
-        departmentName: string,
+        departmentName: string;
         courseData: {
-            courseCode: string,
-            courseName: string,
-            credits: number,
-            termOffered: string[],
-            prerequisites: string,
-            description: string
-        }[],
-    }[],
+            courseCode: string;
+            courseName: string;
+            credits: number;
+            termOffered: string[];
+            prerequisites: string;
+            description: string;
+        }[];
+    }[];
 };
 
 // Define a type for the return value of getDepartmentUrlsAndNames function

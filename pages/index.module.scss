@@ -5,13 +5,29 @@
   z-index: -1;
   object-fit: cover;
 }
+
 .searchHint {
   margin-top: -2em;
   font-size: .7rem;
   font-weight: 300;
   margin-bottom: 1rem;
+
+  p {
+    text-align: center;
+    margin: 0;
+  }
+
 }
-.searchHint p{
-  text-align: center;
-  margin: 0;
+
+.courseBlock {
+  background-color: white;
+  color: black;
+  margin: 1em 0;
+  box-shadow: 0 0 2px 2px #00000050;
+  padding: 2em 1.5em;
+  border-radius: 10px;
+
+  h2{
+    font-size: 1.2rem;
+  }
 }
