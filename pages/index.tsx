@@ -35,12 +35,14 @@ function CourseSearchResult({
     );
 }
 
+const domain = "https://louies-catalog-production.up.railway.app";
+
 export default function SearchApp() {
     const [courseResults, setCourseResults] = useState<SearchResult[]>([]);
 
     const handleInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
         try {
-            const results = await fetch("http://localhost:5353/search?prompt=" + e.target.value);
+            const results = await fetch(`${domain}/search?prompt=${e.target.value}`);
             if (!results.ok) {
                 console.log(results);
                 throw new Error("Failed to fetch data");
