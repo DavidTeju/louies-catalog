@@ -9,10 +9,12 @@ import {FormControl} from "react-bootstrap";
 
 
 function CourseSearchResult({
+                                courseCode,
                                 courseName,
                                 credits,
                                 description,
                             }: {
+    courseCode: string;
     courseName: string;
     credits: number;
     description: string;
@@ -29,7 +31,7 @@ function CourseSearchResult({
             }}>
             <h2 style={{
                 fontSize: "1.2rem",
-            }}>{courseName}</h2>
+            }}>{courseCode}: {courseName}</h2>
             <p>{credits} credits</p>
             <p style={{color: "#000000C0"}}>{description}</p>
         </Container>
@@ -106,6 +108,7 @@ export default function SearchApp() {
                         return (
                             <CourseSearchResult
                                 key={course['courseCode']}
+                                courseCode={course['courseCode']}
                                 courseName={course['courseName']}
                                 credits={course["credits"]}
                                 description={course["description"]}/>
