@@ -104,10 +104,9 @@ export default function SearchApp() {
                         </InputGroup>
                         <Container className={styles.searchHint}>
                             <p>Try searching...</p>
-                            <p>"How to build a robot"</p>
-                            <p>"Criminal psychology"</p>
+                            <p>&quot;How to build a robot&quot;</p>
+                            <p>&quot;Criminal psychology&quot;</p>
                         </Container>
-
                     {courseResults.map((result) => {
                         const course = result;
                         return (
