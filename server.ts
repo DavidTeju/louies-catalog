@@ -2,8 +2,9 @@ import express from "express";
 import search from "./search-courses";
 import update from "./update/update";
 
+
 const app = express();
-const port = 5353;
+const port = process.env.PORT;
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
