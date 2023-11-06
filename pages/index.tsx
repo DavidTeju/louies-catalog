@@ -2,10 +2,12 @@ import React, {useState} from "react";
 import {Analytics} from '@vercel/analytics/react';
 import {SearchResult} from "minisearch";
 import Image from 'next/image'
+import Head from 'next/head';
 import InputGroup from 'react-bootstrap/InputGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import {FormControl} from "react-bootstrap";
+import styles from './index.module.scss';
 
 
 function CourseSearchResult({
@@ -60,13 +62,15 @@ export default function SearchApp() {
 
     return (
         <>
-            <Image style={{
-                height: "100vh",
-                width: "100vw",
-                position: "fixed",
-                zIndex: -1,
-                objectFit: "cover"
-            }}
+            <Head>
+                <title>UofL Course Search</title>
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={"anonymous"}/>
+                <link
+                    href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&family=Playfair+Display&display=swap"
+                    rel="stylesheet"/>
+            </Head>
+            <Image className={styles.backgroundImage}
                    height={500}
                    width={500}
                    src={"/images/campus.png"}
@@ -84,13 +88,8 @@ export default function SearchApp() {
                 minHeight: "100vh",
                 color: "white",
             }}>
-                <link rel="preconnect" href="https://fonts.googleapis.com"/>
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={"anonymous"}/>
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&family=Playfair+Display&display=swap"
-                    rel="stylesheet"/>
                 <Container style={{backgroundColor: "#C41E3A", padding: "5%", borderRadius: "10px"}}>
-                    <div style={{display: "flex", justifyContent: "center"}}><h1
+                    <Container style={{display: "flex", justifyContent: "center"}}><h1
                         style={{textAlign: "center", paddingRight: "6px"}}>Louie&apos;s
                         Catalog</h1>
                         <Image
@@ -99,10 +98,16 @@ export default function SearchApp() {
                             height={100}
                             src={"/images/Louie.svg.png"}
                             alt={"Picture of Louie logo"}/>
-                    </div>
-                    <InputGroup style={{minHeight: "3em", borderRadius: "1em", margin: "2em 0"}}>
-                        <FormControl type="text" onChange={handleInput} placeholder="Search courses..."/>
-                    </InputGroup>
+                    </Container>
+                        <InputGroup style={{minHeight: "3em", borderRadius: "1em", margin: "2em 0"}}>
+                            <FormControl type="text" onChange={handleInput} placeholder="Search courses..."/>
+                        </InputGroup>
+                        <Container className={styles.searchHint}>
+                            <p>Try searching...</p>
+                            <p>"How to build a robot"</p>
+                            <p>"Criminal psychology"</p>
+                        </Container>
+
                     {courseResults.map((result) => {
                         const course = result;
                         return (
