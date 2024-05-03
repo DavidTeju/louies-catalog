@@ -2,8 +2,12 @@ import express from "express";
 import search from "./search-courses";
 import update from "./update/update";
 
+import {config} from "dotenv";
+config();
+
+
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3030;
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
