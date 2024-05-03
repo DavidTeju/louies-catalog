@@ -37,17 +37,12 @@ function Search() {
     const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
     const handleInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        try {
-            const results = await fetch(`${domain}/search?prompt=${e.target.value}`);
-            if (!results.ok) {
-                console.log(results);
-                throw new Error("Failed to fetch data");
-            }
+        const results = await fetch(`${domain}/search?prompt=${e.target.value}`);
+        if (!results.ok) {
+            console.error("Error while fetching data:", results);
+        } else {
             const data: SearchResult[] = await results.json();
             setSearchResults(data);
-        } catch (error) {
-            console.error("Error while fetching data:", error);
-            // Handle the error, e.g., show an error message to the user.
         }
     };
 
