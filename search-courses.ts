@@ -7,7 +7,7 @@ const resolvedData: SearchableCourseData[] = data;
 
 let miniSearch: MiniSearch<SearchableCourseData> = new MiniSearch({
     idField: "courseCode",
-    fields: ["strippedCourseName", "strippedDescription"],
+    fields: ["courseCode", "strippedCourseName", "strippedDescription"],
     storeFields: [
         "courseCode",
         "courseName",
@@ -16,7 +16,7 @@ let miniSearch: MiniSearch<SearchableCourseData> = new MiniSearch({
         "description",
     ],
     searchOptions: {
-        boost: { courseName: 2 },
+        boost: { strippedCourseName: 2, courseCode: 4 },
         fuzzy: 2,
     },
 });
