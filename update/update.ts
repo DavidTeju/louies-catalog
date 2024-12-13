@@ -1,5 +1,8 @@
 import fs from "fs";
-import {getDepartmentUrlsAndNames, getDepeartmentCourses,} from "./scrape-course-data";
+import {
+  getDepartmentUrlsAndNames,
+  getDepartmentCourses,
+} from "./scrape-course-data";
 import generateSearchableCourseSchema from "./generate-searchable-course-schema";
 import {SearchableCourseData, StoredCourseData} from "../types";
 
@@ -39,9 +42,7 @@ export default async function update() {
     try {
         const departmentUrlsAndNames = await getDepartmentUrlsAndNames();
 
-        const departmentCoursesPromises = departmentUrlsAndNames.map(
-            getDepeartmentCourses
-        );
+    const departmentCoursesPromises = departmentUrlsAndNames.map(getDepartmentCourses);
         const allCoursesData = await Promise.all(departmentCoursesPromises);
 
         const searchableCourses: SearchableCourseData[] =

@@ -1,5 +1,6 @@
 import * as cheerio from "cheerio";
 import { CourseData, DepartmentInfo } from "../types";
+import { Element } from "domhandler";
 
 const domain = "https://catalog.louisville.edu";
 
@@ -21,7 +22,7 @@ export async function getDepartmentUrlsAndNames(): Promise<DepartmentInfo[]> {
         })
         .toArray();
 
-    function listItemToUrl(_: any, listItem: cheerio.Element) {
+  function listItemToUrl(_: any, listItem: Element) {
         const link = $(listItem).find("a").attr("href")!;
         return {
             departmentUrl: domain + link,
@@ -30,7 +31,7 @@ export async function getDepartmentUrlsAndNames(): Promise<DepartmentInfo[]> {
     }
 }
 
-export async function getDepeartmentCourses({
+export async function getDepartmentCourses({
     departmentUrl,
     departmentName,
 }: DepartmentInfo): Promise<{
@@ -47,7 +48,7 @@ export async function getDepeartmentCourses({
 
     return { departmentName, courseData };
 
-    function parseCourseBlock(_: any, courseBlock: cheerio.Element) {
+  function parseCourseBlock(_: any, courseBlock: Element) {
         const course = $(courseBlock);
         const title = course.find(".courseblocktitle").text().trim();
         const creditString = course.find(".credits").text().trim();
